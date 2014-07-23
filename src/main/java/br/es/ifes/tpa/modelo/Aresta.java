@@ -21,7 +21,7 @@ public class Aresta {
     public Aresta(Vertice origem, Vertice destino) {
         this.origem = origem;
         this.destino = destino;
-        this.atributos = this.atributos = new HashMap<>();
+        this.atributos = new HashMap<>();
     }
 
     public Vertice getOrigem() {
@@ -47,4 +47,12 @@ public class Aresta {
     public void setAtributos(Map<TipoAtributo, Object> atributos) {
         this.atributos = atributos;
     }
+
+    @Override
+    public String toString() {
+        return "Aresta{" + "origem: " + origem + "----->>> destino: " + destino + '}';
+    }
+    
+    
+    
 }

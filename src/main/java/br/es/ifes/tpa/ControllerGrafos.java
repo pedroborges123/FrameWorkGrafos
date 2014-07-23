@@ -25,8 +25,6 @@ public class ControllerGrafos {
 
     public ControllerGrafos(Grafo grafo) {
         this.grafo = grafo;
-        this.grafo.setAretas(new ArrayList<Aresta>());
-        this.grafo.setVertices(new ArrayList<Vertice>());
 
     }
 
@@ -43,13 +41,12 @@ public class ControllerGrafos {
         this.grafo.setTempo(0);
 
         if (this.grafo.getAretas().isEmpty() && this.grafo.getVertices().isEmpty()) {
+
             throw new ExceptionInInitializerError("Este Grafo não contem todos os atributos necessarios para executar o DFS! ");
         }
 
-
         int tam = this.grafo.getVertices().size();
         for (int i = 0; i < tam; i++) {
-
 
             this.grafo.getVertices().get(i).getAtributos().put(TipoAtributo.cor, Cor.Branco);
             this.grafo.getVertices().get(i).getAtributos().put(TipoAtributo.pred, -1);
@@ -63,7 +60,7 @@ public class ControllerGrafos {
             }
 
         }
-        this.grafo.makeAction();
+        this.grafo.makeAction("DFS");
     }
 
     private ArrayList<Vertice> listAdj(Vertice v) {
@@ -82,7 +79,6 @@ public class ControllerGrafos {
     }
 
     private void visita(Vertice v) {
-        
 
         v.getAtributos().remove(TipoAtributo.cor);
         v.getAtributos().put(TipoAtributo.cor, Cor.Cinza);
@@ -91,27 +87,21 @@ public class ControllerGrafos {
 
         v.getAtributos().put(TipoAtributo.d, this.grafo.getTempo());
 
-        ArrayList<Vertice> adj = this.listAdj(v);
-        int tam = adj.size();
+        int tam = this.grafo.getAretas().size();
         for (int x = 0; x < tam; x++) {
+            if (this.grafo.getAretas().get(x).getOrigem().equals(v)) {
+                
+                if (this.grafo.getAretas().get(x).getDestino().getAtributos().get(TipoAtributo.cor).equals(Cor.Branco)) {
 
-            if (adj.get(x).getAtributos().get(TipoAtributo.cor).equals(Cor.Branco)) {
-
-                adj.get(x).getAtributos().put(TipoAtributo.pred, v);
-                this.visita(adj.get(x));
+                    this.grafo.getAretas().get(x).getDestino().getAtributos().put(TipoAtributo.pred, v);
+                    this.visita(this.grafo.getAretas().get(x).getDestino());
+                }
             }
-
         }
         v.getAtributos().put(TipoAtributo.cor, Cor.Preto);
         this.grafo.setTempo(this.grafo.getTempo() + 1);
         v.getAtributos().put(TipoAtributo.t, this.grafo.getTempo());
 
-
     }
-
-
-
-
-
 
 }

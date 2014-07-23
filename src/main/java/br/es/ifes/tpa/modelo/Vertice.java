@@ -48,6 +48,11 @@ public class Vertice {
     public void setAtributos(Map<TipoAtributo, Object> atributos) {
         this.atributos = atributos;
     }
+
+    @Override
+    public String toString() {
+        return "Vertice{" + "id=" + id + ", nome=" + nome + '}';
+    }
     
     
     
