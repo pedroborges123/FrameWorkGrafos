@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package br.es.ifes.tpa.modelo;
 
 import java.util.LinkedList;
@@ -13,31 +12,44 @@ import java.util.LinkedList;
  * @author 20091BSI0222
  */
 public class Fila {
-    
-    
+
     private LinkedList<Object> fila;
-    
-    
-    public Fila(){
+
+    public Fila() {
         this.fila = new LinkedList<Object>();
     }
-    
-    public Object getFristOfQueue(){
+
+    public void insert(Object obj) {
+        this.fila.addLast(obj);
+
+    }
+
+    public boolean isEmpty() {
+        return this.fila.isEmpty();
+
+    }
+
+    public Object getFristOfQueue() {
         Object objeto;
-        if(this.fila.isEmpty()){
+        if (this.fila.isEmpty()) {
             return null;
-        }
-        else{
-           objeto = this.fila.getFirst();
+        } else {
+            objeto = this.fila.getFirst();
             this.fila.removeFirst();
-            return objeto;  
+            return objeto;
         }
     }
-    
-    public void EmpyQueue(){
-        while(!this.fila.isEmpty()){
+
+    public Object remove(Object obj) {
+
+        return this.fila.removeFirst();
+
+    }
+
+    public void EmptyQueue() {
+        while (!this.fila.isEmpty()) {
             this.fila.removeFirst();
         }
     }
-    
+
 }

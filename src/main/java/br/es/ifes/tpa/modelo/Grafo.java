@@ -18,7 +18,7 @@ public abstract class Grafo {
     protected ArrayList<Vertice> vertices;
     protected int tempo;
     
-    public abstract void makeAction(String Tipo);
+    public abstract void makeAction();
 
     public int getTempo() {
         return tempo;
